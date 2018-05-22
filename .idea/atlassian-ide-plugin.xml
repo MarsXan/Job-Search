@@ -1,0 +1,14 @@
+<atlassian-ide-plugin>
+  <project-configuration id="1">
+    <servers id="2">
+      <jira id="3">
+        <server-id id="4">656811e0-c762-4b41-aa6e-4eb21fae2b2a</server-id>
+        <name>ParsaTeam</name>
+        <url>http://jira.rahyabtelecom.com:8080</url>
+        <shared>false</shared>
+        <useSessionCookies>true</useSessionCookies>
+      </jira>
+    </servers>
+    <default-jira-server reference="4" />
+  </project-configuration>
+</atlassian-ide-plugin>
