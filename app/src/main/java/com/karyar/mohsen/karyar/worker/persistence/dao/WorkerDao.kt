@@ -18,9 +18,12 @@ interface WorkerDao {
   val workers: LiveData<List<Worker>>
 
   @Query("SELECT * FROM worker where wId LIKE  :id ")
-  fun findByName(
+  fun findById(
     id: Int?
   ): Worker
+
+  @Query("SELECT * FROM worker where phone_number LIKE  :phoneNumber ")
+  fun findByPhoneNumber(phoneNumber: String): LiveData<Worker>
 
   @Insert(onConflict = REPLACE)
   fun insert(worker: Worker)

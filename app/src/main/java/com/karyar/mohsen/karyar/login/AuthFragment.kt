@@ -1,4 +1,4 @@
-package com.karyar.mohsen.karyar.login.ll
+package com.karyar.mohsen.karyar.login
 
 import android.os.Bundle
 import android.support.annotation.LayoutRes
@@ -16,21 +16,20 @@ import com.karyar.mohsen.karyar.transitions.TextResize
 import com.transitionseverywhere.ChangeBounds
 import com.transitionseverywhere.TransitionManager
 import com.transitionseverywhere.TransitionSet
-import java.util.Objects
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 
 abstract class AuthFragment : Fragment() {
 
   private var mCallback: Callback? = null
 
-  lateinit var caption: VerticalTextView
+  lateinit var loginBtn: VerticalTextView
 
   lateinit var parent: ViewGroup
 
   protected var lock: Boolean = false
 
   protected val params: ConstraintLayout.LayoutParams
-    get() = ConstraintLayout.LayoutParams::class.java.cast(caption.layoutParams)
+    get() = ConstraintLayout.LayoutParams::class.java.cast(loginBtn.layoutParams)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -40,11 +39,11 @@ abstract class AuthFragment : Fragment() {
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val root = inflater.inflate(authLayout(), container, false)
-    caption = root.findViewById(R.id.caption)
+    loginBtn = root.findViewById(R.id.loginBtn)
     parent = root.findViewById(R.id.root)
     root.setOnClickListener { _ -> unfold() }
     KeyboardVisibilityEvent.setEventListener(
-        Objects.requireNonNull(activity)
+        activity
     ) { isOpen ->
       mCallback!!.scale(isOpen)
       if (!isOpen) {
@@ -66,12 +65,12 @@ abstract class AuthFragment : Fragment() {
 
   private fun unfold() {
     if (!lock) {
-      caption.isVerticalText = false
-      caption.requestLayout()
+      loginBtn.isVerticalText = false
+      loginBtn.requestLayout()
       val transition = Rotate()
       transition.setStartAngle(-90f)
       transition.setEndAngle(0f)
-      transition.addTarget(caption)
+      transition.addTarget(loginBtn)
       val set = TransitionSet()
       set.duration = resources.getInteger(R.integer.duration)
           .toLong()
@@ -79,23 +78,23 @@ abstract class AuthFragment : Fragment() {
       set.addTransition(changeBounds)
       set.addTransition(transition)
       val sizeTransition = TextResize()
-      sizeTransition.addTarget(caption)
+      sizeTransition.addTarget(loginBtn)
       set.addTransition(sizeTransition)
       set.ordering = TransitionSet.ORDERING_TOGETHER
-      caption.post {
+      loginBtn.post {
         TransitionManager.beginDelayedTransition(parent, set)
-        caption.setTextSize(
+        loginBtn.setTextSize(
             TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.unfolded_size)
         )
-        caption.setTextColor(
+        loginBtn.setTextColor(
             ContextCompat.getColor(context!!, R.color.color_label)
         )
-        caption.translationX = 0f
+        loginBtn.translationX = 0f
         val params = params
         params.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID
         params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID
         params.verticalBias = 0.78f
-        caption.layoutParams = params
+        loginBtn.layoutParams = params
       }
       mCallback!!.show(this)
       lock = true

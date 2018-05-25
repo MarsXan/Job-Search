@@ -1,8 +1,7 @@
-package com.karyar.mohsen.karyar.login.ll
+package com.karyar.mohsen.karyar.login
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.content.ContextCompat
@@ -14,12 +13,13 @@ import android.widget.ImageView
 
 import com.karyar.mohsen.karyar.R
 import com.karyar.mohsen.karyar.customviews.AnimatedViewPager
+import com.karyar.mohsen.karyar.login.AuthFragment.Callback
 
 class AuthAdapter(manager: FragmentManager,
   private val pager: AnimatedViewPager,
   private val authBackground: ImageView,
   private val sharedElements: List<ImageView>) : FragmentStatePagerAdapter(manager),
-    AuthFragment.Callback {
+    Callback {
   private val authArray: SparseArray<AuthFragment>
   private val factor: Float
 
