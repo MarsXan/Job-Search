@@ -3,4 +3,23 @@
   <string name="title_home">Home</string>
   <string name="title_dashboard">Dashboard</string>
   <string name="title_notifications">Notifications</string>
+
+
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="label_company_name">نام شرکت</string>
+  <string name="hint_company_name">مثال:پارسا</string>
+  <string name="label_city_name">نام شهر</string>
+  <string name="hint_city_name">مثال:تهران</string>
+  <string name="label_worker_count">تعداد کارکنان</string>
+  <string name="label_webSite">آدرس وب سایت شرکت</string>
+  <string name="hint_web_site">مثال: karyar.ir</string>
+  <string name="label_desc">معرفی</string>
+
+  <string name="sign_up_label">Sign Up</string>
+  <string name="log_in_label">Log In</string>
+  <string name="forgot_password">Forgot Password?</string>
+  <string name="password_hint">Password</string>
+  <string name="email_hint">Email</string>
+  <string name="confirm_hint">Confirm Password</string>
+  <string name="busy_people">Busy People</string>
 </resources>
