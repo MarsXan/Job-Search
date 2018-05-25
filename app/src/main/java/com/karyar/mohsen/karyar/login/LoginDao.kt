@@ -9,8 +9,8 @@ import com.karyar.mohsen.karyar.BaseDao
  * Created by Mohsen on 5/25/18.
  */
 @Dao
-abstract class LoginDao() : BaseDao<LoginInfo> {
+abstract class LoginDao : BaseDao<LoginInfo> {
 
-  @Query("SELECT * FROM logininfo where userName LIKE  :phoneNumber ")
-  abstract fun findLoginInfoByPhoneNumber(phoneNumber: String): LiveData<LoginInfo>
+  @Query("SELECT * FROM logininfo where (userName LIKE  :phoneNumber AND role LIKE :role)")
+  abstract fun findLoginInfoByPhoneNumber(phoneNumber: String, role: String): LiveData<LoginInfo>
 }

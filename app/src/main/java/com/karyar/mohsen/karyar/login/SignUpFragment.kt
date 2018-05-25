@@ -68,14 +68,18 @@ class SignUpFragment : AuthFragment() {
         else -> {
           passwordInput.isErrorEnabled = false
           mobileInput.isErrorEnabled = false
-          confirmPasswordInput.isErrorEnabled= false
+          confirmPasswordInput.isErrorEnabled = false
           loginViewModel!!.saveLoginInfo(
-              LoginInfo(mobileInputEt.text.toString(), passwordInputEt.text.toString())
+              LoginInfo(
+                  mobileInputEt.text.toString(), passwordInputEt.text.toString(),
+                  loginViewModel!!.role!!
+              )
           )
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe({
-                Toast.makeText(activity, "Succeed", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Succeed", Toast.LENGTH_LONG)
+                    .show()
               }) {
                 Toast.makeText(activity, "ERROR", Toast.LENGTH_LONG)
                     .show()
@@ -159,10 +163,10 @@ class SignUpFragment : AuthFragment() {
   }
 
   companion object {
-    private const val ROLE_TYPE = "ROLE"
+    private const val ROLE_TYPE = "Role"
     @JvmStatic
     fun newInstance(role: String) =
-      JobListFragment().apply {
+      SignUpFragment().apply {
         arguments = Bundle().apply {
           putString(ROLE_TYPE, role)
         }

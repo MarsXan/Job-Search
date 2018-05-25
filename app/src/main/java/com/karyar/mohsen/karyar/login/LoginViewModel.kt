@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import com.karyar.mohsen.karyar.AppDatabase
+import com.karyar.mohsen.karyar.Role
 import com.karyar.mohsen.karyar.worker.persistence.db.Worker
 import rx.Completable
 
@@ -27,7 +28,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
   fun getLoginInfoByPhoneNumber(phoneNumber: String): LiveData<LoginInfo> {
     return appDatabase!!.loginDao()
-        .findLoginInfoByPhoneNumber(phoneNumber)
+        .findLoginInfoByPhoneNumber(phoneNumber, role!!)
   }
 
   fun getUserByPhoneNumber(phoneNumber: String): LiveData<Worker> {

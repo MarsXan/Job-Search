@@ -12,8 +12,11 @@ import android.os.Parcelable
 @Entity()
 class LoginInfo(@PrimaryKey var userName: String, @ColumnInfo(
     name = "password"
-) var password: String) : Parcelable {
+) var password: String, @ColumnInfo(
+    name = "role"
+) var role: String) : Parcelable {
   constructor(source: Parcel) : this(
+      source.readString(),
       source.readString(),
       source.readString()
   )
@@ -23,6 +26,7 @@ class LoginInfo(@PrimaryKey var userName: String, @ColumnInfo(
   override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
     writeString(userName)
     writeString(password)
+    writeString(role)
   }
 
   companion object {

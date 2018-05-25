@@ -143,10 +143,10 @@ class LogInFragment : AuthFragment() {
   }
 
   companion object {
-    private const val ROLE_TYPE = "ROLE"
+    private const val ROLE_TYPE = "Role"
     @JvmStatic
     fun newInstance(role: String) =
-      JobListFragment().apply {
+      LogInFragment().apply {
         arguments = Bundle().apply {
           putString(ROLE_TYPE, role)
         }

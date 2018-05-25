@@ -12,13 +12,15 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
 
 import com.karyar.mohsen.karyar.R
+import com.karyar.mohsen.karyar.Role
 import com.karyar.mohsen.karyar.customviews.AnimatedViewPager
 import com.karyar.mohsen.karyar.login.AuthFragment.Callback
 
 class AuthAdapter(manager: FragmentManager,
   private val pager: AnimatedViewPager,
   private val authBackground: ImageView,
-  private val sharedElements: List<ImageView>) : FragmentStatePagerAdapter(manager),
+  private val sharedElements: List<ImageView>,val role: Role)
+  : FragmentStatePagerAdapter(manager),
     Callback {
   private val authArray: SparseArray<AuthFragment>
   private val factor: Float
@@ -34,7 +36,7 @@ class AuthAdapter(manager: FragmentManager,
   override fun getItem(position: Int): AuthFragment {
     var fragment: AuthFragment? = authArray.get(position)
     if (fragment == null) {
-      fragment = if (position != 1) LogInFragment() else SignUpFragment()
+      fragment = if (position != 1) LogInFragment.newInstance(role.name) else SignUpFragment.newInstance(role.name)
       authArray.put(position, fragment)
       fragment.setCallback(this)
     }
@@ -62,13 +64,13 @@ class AuthAdapter(manager: FragmentManager,
     val context = pager.context
     //since we're clipping the page, we have to adjust the shared elements
     val shiftAnimator = AnimatorSet()
-    for (view in sharedElements) {
-      var translationX = if (forward) (pageOffsetX) else -pageOffsetX
-      val temp = (view.width / 1.6f)
-      translationX -= if (forward) temp else -temp
-      val shift = ObjectAnimator.ofFloat<View>(view, View.TRANSLATION_X, 0f, translationX)
-      shiftAnimator.playTogether(shift)
-    }
+//    for (view in sharedElements) {
+//      var translationX = if (forward) (pageOffsetX) else -pageOffsetX
+//      val temp = (view.width / 2f)
+//      translationX -= if (forward) temp else -temp
+//      val shift = ObjectAnimator.ofFloat<View>(view, View.TRANSLATION_X, 0f, translationX)
+//      shiftAnimator.playTogether(shift)
+//    }
 
     val color = ContextCompat.getColor(
         context, if (forward) R.color.color_logo_sign_up else R.color.color_logo_log_in

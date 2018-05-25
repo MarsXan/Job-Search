@@ -16,6 +16,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.ImageViewTarget
 import com.karyar.mohsen.karyar.R
+import com.karyar.mohsen.karyar.Role
+import com.karyar.mohsen.karyar.Role.WORKER
 import kotlinx.android.synthetic.main.activity_login.first
 import kotlinx.android.synthetic.main.activity_login.last
 import kotlinx.android.synthetic.main.activity_login.logo
@@ -40,10 +42,10 @@ class LoginActivity : AppCompatActivity() {
         if (element.id != R.id.logo) R.color.white_transparent else R.color.color_logo_log_in
       DrawableCompat.setTint(element.drawable, ContextCompat.getColor(this, color))
     }
-    loadBigImageWithGlide()
+    loadBigImageWithGlide(WORKER)
   }
 
-  private fun loadBigImageWithGlide() {
+  private fun loadBigImageWithGlide(role: Role) {
     val screenSize = screenSize()
     Glide.with(this)
         .asBitmap()
@@ -74,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
             }
             pager.post {
               val adapter = AuthAdapter(
-                  supportFragmentManager, pager, scrolling_background, sharedElements
+                  supportFragmentManager, pager, scrolling_background, sharedElements,role
               )
               pager.adapter = adapter
             }
