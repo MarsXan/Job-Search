@@ -23,4 +23,6 @@
   <string name="confirm_hint">تکرار رمز عبور</string>
   <string name="busy_people">Busy People</string>
   <string name="mobile_hint">موبایل</string>
+  <string name="title_activity_profile">ProfileActivity</string>
+  <string name="action_settings">Settings</string>
 </resources>

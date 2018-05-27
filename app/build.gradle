@@ -82,6 +82,4 @@ dependencies {
   implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
   implementation 'com.andkulikov:transitionseverywhere:1.7.9'
   implementation 'com.github.Q42:AndroidScrollingImageView:1.2'
-
-
 }
