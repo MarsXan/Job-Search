@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
 import android.arch.persistence.room.Update
-import com.karyar.mohsen.karyar.Skill
+import com.karyar.mohsen.karyar.skill.Skill
 import com.karyar.mohsen.karyar.worker.persistence.db.Worker
 
 /**
