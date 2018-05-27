@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root"
+    android:background="@color/color_sign_up"
+    >
+
+  <android.support.constraint.Guideline
+      android:id="@+id/guideline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_percent="0.05"
+      />
+  <android.support.constraint.Guideline
+      android:id="@+id/guideline3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.86"
+      />
+  <android.support.constraint.Guideline
+      android:id="@+id/guideline2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.14"
+      />
+  <android.support.constraint.Guideline
+      android:id="@+id/guideline4"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_percent="0.95"
+      />
+
+  <RelativeLayout
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toTopOf="@+id/guideline4"
+      app:layout_constraintEnd_toStartOf="@+id/guideline3"
+      app:layout_constraintStart_toStartOf="@+id/guideline2"
+      app:layout_constraintTop_toTopOf="@+id/guideline"
+      >
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/saveBtn"
+        android:layout_marginBottom="10dp"
+        android:fillViewport="true"
+
+        >
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:clickable="true"
+          android:focusable="true"
+          android:focusableInTouchMode="true"
+          android:gravity="right"
+          android:orientation="vertical"
+          >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="مهارت‌های حرفه‌ای"
+            android:textColor="@color/color_text"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/state"
+            >
+
+          <android.support.design.widget.TextInputEditText
+              android:id="@+id/skillInputEt"
+              android:hint="مهارت"
+              android:inputType="text"
+              style="@style/Widget.TextEdit"
+              android:gravity="right"
+              android:layout_marginLeft="55dp"
+              android:background="@android:color/transparent"
+              />
+          <FrameLayout
+              android:id="@+id/addSkillBtn"
+              android:layout_width="55dp"
+              android:layout_height="match_parent"
+
+              android:background="@color/material_green"
+              >
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add_wrapper"
+                />
+          </FrameLayout>
+
+        </FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/skillRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text=" سوابق شغلی "
+            android:textColor="@color/color_text"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/state"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:paddingRight="16dp"
+
+            >
+
+          <TextView
+              android:id="@+id/addWorkExpLabel"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:layout_centerVertical="true"
+              android:text=" سابقه شغلی"
+              android:textColor="@color/color_text"
+              android:textSize="17sp"
+              android:textStyle="bold"
+              />
+          <FrameLayout
+              android:id="@+id/addWorkExpBtn"
+              android:layout_width="55dp"
+
+              android:layout_height="55dp"
+              android:background="@color/material_green"
+              >
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add_wrapper"
+                />
+          </FrameLayout>
+
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/workExpRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="زبان‌ها "
+            android:textColor="@color/color_text"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/state"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:paddingRight="16dp"
+
+            >
+
+          <TextView
+              android:id="@+id/addLanguage"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:layout_centerVertical="true"
+              android:text="زبان"
+              android:textColor="@color/color_text"
+              android:textSize="17sp"
+              android:textStyle="bold"
+              />
+          <FrameLayout
+              android:id="@+id/addLanguageBtn"
+              android:layout_width="55dp"
+              android:layout_height="55dp"
+              android:background="@color/material_green"
+              >
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add_wrapper"
+                />
+          </FrameLayout>
+
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/languageRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            />
+
+
+      </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/ic_save"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="ذخیره"
+        android:textColor="@color/color_text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+  </RelativeLayout>
+  <com.karyar.mohsen.karyar.customviews.VerticalTextView
+      android:id="@+id/verticalTv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:textSize="@dimen/unfolded_size"
+      android:textAllCaps="true"
+      android:textStyle="bold"
+      android:textColor="@color/color_label"
+      android:text=""
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.78"
+      app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
