@@ -1,14 +1,12 @@
 package com.karyar.mohsen.karyar.skill
 
-import android.annotation.TargetApi
-import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.TextInputEditText
 import android.util.TypedValue
 import android.view.View
+import com.blankj.utilcode.util.StringUtils
 import com.karyar.mohsen.karyar.R
 import com.karyar.mohsen.karyar.profile.ProfileBaseFragment
 import com.karyar.mohsen.karyar.transitions.Rotate
@@ -17,6 +15,9 @@ import com.transitionseverywhere.ChangeBounds
 import com.transitionseverywhere.Transition
 import com.transitionseverywhere.TransitionManager
 import com.transitionseverywhere.TransitionSet
+import kotlinx.android.synthetic.main.fragment_skill.addSkillBtn
+import kotlinx.android.synthetic.main.fragment_skill.skillInputEt
+import kotlinx.android.synthetic.main.fragment_skill.skillRecycler
 
 class SkillFragment : ProfileBaseFragment() {
   private var views: MutableList<TextInputEditText> = mutableListOf()
@@ -35,6 +36,16 @@ class SkillFragment : ProfileBaseFragment() {
     verticalTv.isVerticalText = true
     foldStuff()
     verticalTv.translationX = textPadding
+    var skillList = mutableListOf<Skill>()
+    var skillAdapter = SkillRecyclerApdater(context!!, skillList)
+    skillRecycler.adapter = skillAdapter
+    addSkillBtn.setOnClickListener({
+      if (!StringUtils.isEmpty(skillInputEt.text.toString())) {
+        skillList.add(Skill(null, skillInputEt.text.toString()))
+        skillAdapter.notifyDataSetChanged()
+      }
+    })
+
   }
 
 
