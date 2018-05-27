@@ -1,8 +1,8 @@
 package com.karyar.mohsen.karyar
 
+import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.Database
 import android.content.Context
 import com.karyar.mohsen.karyar.employer.Company
 import com.karyar.mohsen.karyar.employer.CompanyDao
@@ -11,14 +11,16 @@ import com.karyar.mohsen.karyar.job.Job
 import com.karyar.mohsen.karyar.job.JobDao
 import com.karyar.mohsen.karyar.login.LoginDao
 import com.karyar.mohsen.karyar.login.LoginInfo
-import com.karyar.mohsen.karyar.worker.persistence.db.Language
+import com.karyar.mohsen.karyar.skill.Skill
+import com.karyar.mohsen.karyar.skill.SkillDao
 import com.karyar.mohsen.karyar.worker.persistence.dao.LanguageDao
+import com.karyar.mohsen.karyar.worker.persistence.dao.WorkExperienceDao
+import com.karyar.mohsen.karyar.worker.persistence.dao.WorkerDao
+import com.karyar.mohsen.karyar.worker.persistence.db.Language
 import com.karyar.mohsen.karyar.worker.persistence.db.WorkExperience
 import com.karyar.mohsen.karyar.worker.persistence.db.Worker
 import com.karyar.mohsen.karyar.worker.persistence.db.WorkerLanguageJoin
 import com.karyar.mohsen.karyar.worker.persistence.db.WorkerSkillJoin
-import com.karyar.mohsen.karyar.worker.persistence.dao.WorkExperienceDao
-import com.karyar.mohsen.karyar.worker.persistence.dao.WorkerDao
 
 /**
  * Created by Mohsen on 5/22/18.

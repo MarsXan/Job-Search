@@ -2,6 +2,7 @@ package com.karyar.mohsen.karyar.login
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Point
 import android.os.Bundle
@@ -18,6 +19,9 @@ import com.bumptech.glide.request.target.ImageViewTarget
 import com.karyar.mohsen.karyar.R
 import com.karyar.mohsen.karyar.Role
 import com.karyar.mohsen.karyar.Role.WORKER
+import com.karyar.mohsen.karyar.profile.ProfileActivity
+import com.karyar.mohsen.karyar.utils.StorageUtil
+
 import kotlinx.android.synthetic.main.activity_login.first
 import kotlinx.android.synthetic.main.activity_login.last
 import kotlinx.android.synthetic.main.activity_login.logo
@@ -42,7 +46,11 @@ class LoginActivity : AppCompatActivity() {
         if (element.id != R.id.logo) R.color.white_transparent else R.color.color_logo_log_in
       DrawableCompat.setTint(element.drawable, ContextCompat.getColor(this, color))
     }
-    loadBigImageWithGlide(WORKER)
+    if (StorageUtil.getPrefBoolean(isLoggedIn, false)) {
+      startActivity(Intent(this, ProfileActivity::class.java))
+      finish()
+    } else
+      loadBigImageWithGlide(WORKER)
   }
 
   private fun loadBigImageWithGlide(role: Role) {
@@ -53,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
         .apply(
             RequestOptions
                 .diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC)
-                .override(screenSize[0]*2,screenSize[1])
+                .override(screenSize[0] * 2, screenSize[1])
         )
         .into(object : ImageViewTarget<Bitmap>(scrolling_background) {
           override fun setResource(resource: Bitmap?) {
@@ -76,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
             }
             pager.post {
               val adapter = AuthAdapter(
-                  supportFragmentManager, pager, scrolling_background, sharedElements,role
+                  supportFragmentManager, pager, scrolling_background, sharedElements, role
               )
               pager.adapter = adapter
             }
@@ -89,6 +97,10 @@ class LoginActivity : AppCompatActivity() {
     val size = Point()
     display.getSize(size)
     return intArrayOf(size.x, size.y)
+  }
+
+  companion object {
+    const val isLoggedIn = "isLoggedIn"
   }
 
 }

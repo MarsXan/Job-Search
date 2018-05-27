@@ -3,6 +3,7 @@ package com.karyar.mohsen.karyar.login
 import android.annotation.TargetApi
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Build
@@ -18,9 +19,11 @@ import com.blankj.utilcode.util.ObjectUtils.isNotEmpty
 import com.blankj.utilcode.util.StringUtils.isEmpty
 import com.karyar.mohsen.karyar.AppDatabase
 import com.karyar.mohsen.karyar.R
-import com.karyar.mohsen.karyar.job.JobListFragment
+import com.karyar.mohsen.karyar.login.LoginActivity.Companion.isLoggedIn
+import com.karyar.mohsen.karyar.profile.ProfileActivity
 import com.karyar.mohsen.karyar.transitions.Rotate
 import com.karyar.mohsen.karyar.transitions.TextResize
+import com.karyar.mohsen.karyar.utils.StorageUtil
 import com.transitionseverywhere.ChangeBounds
 import com.transitionseverywhere.Transition
 import com.transitionseverywhere.TransitionManager
@@ -54,23 +57,28 @@ class LogInFragment : AuthFragment() {
         isEmpty(mobileInputEt.text.toString()) -> mobileInput.error =
             "شماره موبایل نباید خالی باشد!"
         else -> {
-          passwordInput.isErrorEnabled=false
-          mobileInput.isErrorEnabled=false
+          passwordInput.isErrorEnabled = false
+          mobileInput.isErrorEnabled = false
           loginViewModel!!.getLoginInfoByPhoneNumber(mobileInputEt.text.toString())
-            .observe(this, Observer {
-              if (isNotEmpty(it)) {
-                if (it!!.password == passwordInputEt.text.toString()) {
-                  Toast.makeText(activity, "Succeed", Toast.LENGTH_LONG)
-                      .show()
+              .observe(this, Observer {
+                if (isNotEmpty(it)) {
+                  if (it!!.password == passwordInputEt.text.toString()) {
+                    Toast.makeText(activity, "Succeed", Toast.LENGTH_LONG)
+                        .show()
+                    if (loginViewModel!!.getUserByPhoneNumber(it.userName).value == null) {
+                      context!!.startActivity(Intent(context, ProfileActivity::class.java))
+                      StorageUtil.putPrefBoolean(isLoggedIn, true)
+                      activity?.finish()
+                    } else
+                      Toast.makeText(activity, "ProfileExist", Toast.LENGTH_LONG).show()
+                  } else
+                    Toast.makeText(activity, "UserOrPassWrong!", Toast.LENGTH_LONG).show()
                 } else {
-                  Toast.makeText(activity, "UserOrPassWrong!", Toast.LENGTH_LONG)
+                  Toast.makeText(activity, "UserNotExist!", Toast.LENGTH_LONG)
                       .show()
                 }
-              } else {
-                Toast.makeText(activity, "UserNotExist!", Toast.LENGTH_LONG)
-                    .show()
-              }
-            })}
+              })
+        }
       }
     })
 
@@ -143,7 +151,7 @@ class LogInFragment : AuthFragment() {
   }
 
   companion object {
-    private const val ROLE_TYPE = "Role"
+    private const val ROLE_TYPE = "ROLE"
     @JvmStatic
     fun newInstance(role: String) =
       LogInFragment().apply {

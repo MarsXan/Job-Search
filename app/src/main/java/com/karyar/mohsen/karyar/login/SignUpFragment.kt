@@ -14,7 +14,6 @@ import android.view.View
 import android.widget.Toast
 import com.blankj.utilcode.util.StringUtils.isEmpty
 import com.karyar.mohsen.karyar.R
-import com.karyar.mohsen.karyar.job.JobListFragment
 import com.karyar.mohsen.karyar.transitions.Rotate
 import com.karyar.mohsen.karyar.transitions.TextResize
 import com.transitionseverywhere.ChangeBounds
@@ -163,7 +162,7 @@ class SignUpFragment : AuthFragment() {
   }
 
   companion object {
-    private const val ROLE_TYPE = "Role"
+    private const val ROLE_TYPE = "ROLE"
     @JvmStatic
     fun newInstance(role: String) =
       SignUpFragment().apply {
