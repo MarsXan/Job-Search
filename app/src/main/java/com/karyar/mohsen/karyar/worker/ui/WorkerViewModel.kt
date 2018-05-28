@@ -4,8 +4,8 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import com.karyar.mohsen.karyar.AppDatabase
+import com.karyar.mohsen.karyar.language.Language
 import com.karyar.mohsen.karyar.skill.Skill
-import com.karyar.mohsen.karyar.worker.persistence.db.Language
 import com.karyar.mohsen.karyar.worker.persistence.db.Worker
 import rx.Completable
 

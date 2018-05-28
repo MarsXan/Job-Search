@@ -1,8 +1,8 @@
-package com.karyar.mohsen.karyar.worker.persistence.db
+package com.karyar.mohsen.karyar.skill
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
-import com.karyar.mohsen.karyar.skill.Skill
+import com.karyar.mohsen.karyar.worker.persistence.db.Worker
 
 /**
  * Created by Mohsen on 5/23/18.

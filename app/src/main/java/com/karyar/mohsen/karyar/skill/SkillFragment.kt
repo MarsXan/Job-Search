@@ -8,6 +8,7 @@ import android.util.TypedValue
 import android.view.View
 import com.blankj.utilcode.util.StringUtils
 import com.karyar.mohsen.karyar.R
+import com.karyar.mohsen.karyar.language.Language
 import com.karyar.mohsen.karyar.profile.ProfileBaseFragment
 import com.karyar.mohsen.karyar.transitions.Rotate
 import com.karyar.mohsen.karyar.transitions.TextResize
@@ -15,7 +16,10 @@ import com.transitionseverywhere.ChangeBounds
 import com.transitionseverywhere.Transition
 import com.transitionseverywhere.TransitionManager
 import com.transitionseverywhere.TransitionSet
+import kotlinx.android.synthetic.main.fragment_skill.addLanguageBtn
 import kotlinx.android.synthetic.main.fragment_skill.addSkillBtn
+import kotlinx.android.synthetic.main.fragment_skill.languageInputEt
+import kotlinx.android.synthetic.main.fragment_skill.languageRecycler
 import kotlinx.android.synthetic.main.fragment_skill.skillInputEt
 import kotlinx.android.synthetic.main.fragment_skill.skillRecycler
 
@@ -23,6 +27,7 @@ class SkillFragment : ProfileBaseFragment() {
   private var views: MutableList<TextInputEditText> = mutableListOf()
   private val textPadding: Float
     get() = resources.getDimension(R.dimen.folded_label_padding) / 2.1f
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     arguments?.let {
@@ -36,18 +41,33 @@ class SkillFragment : ProfileBaseFragment() {
     verticalTv.isVerticalText = true
     foldStuff()
     verticalTv.translationX = textPadding
-    var skillList = mutableListOf<Skill>()
-    var skillAdapter = SkillRecyclerApdater(context!!, skillList)
-    skillRecycler.adapter = skillAdapter
+
+    val skillList = mutableListOf<Skill>()
+    var simpleItemRecyclerAdapter = SimpleItemRecyclerAdapter(context!!, skillList)
+    skillRecycler.adapter = simpleItemRecyclerAdapter
+
     addSkillBtn.setOnClickListener({
+
       if (!StringUtils.isEmpty(skillInputEt.text.toString())) {
         skillList.add(Skill(null, skillInputEt.text.toString()))
-        skillAdapter.notifyDataSetChanged()
+        skillInputEt.setText("")
+        simpleItemRecyclerAdapter.notifyDataSetChanged()
+      }
+    })
+    val languageList = mutableListOf<Language>()
+    simpleItemRecyclerAdapter = SimpleItemRecyclerAdapter(context!!, languageList)
+    languageRecycler.adapter = simpleItemRecyclerAdapter
+
+    addLanguageBtn.setOnClickListener({
+
+      if (!StringUtils.isEmpty(languageInputEt.text.toString())) {
+        languageList.add(Language(null, languageInputEt.text.toString()))
+        languageInputEt.setText("")
+        simpleItemRecyclerAdapter.notifyDataSetChanged()
       }
     })
 
   }
-
 
   override fun authLayout(): Int {
     return R.layout.fragment_skill
@@ -56,7 +76,6 @@ class SkillFragment : ProfileBaseFragment() {
   override fun clearFocus() {
     for (view in views) view.clearFocus()
   }
-
 
   override fun fold() {
     lock = false

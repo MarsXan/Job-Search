@@ -1,4 +1,4 @@
-package com.karyar.mohsen.karyar.worker.persistence.db
+package com.karyar.mohsen.karyar.language
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -29,6 +29,7 @@ class Language(@PrimaryKey(autoGenerate = true) var id: Int?, @ColumnInfo(
     @JvmField val CREATOR: Parcelable.Creator<Language> = object : Parcelable.Creator<Language> {
       override fun createFromParcel(source: Parcel): Language =
         Language(source)
+
       override fun newArray(size: Int): Array<Language?> = arrayOfNulls(size)
     }
   }

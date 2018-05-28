@@ -1,11 +1,10 @@
-package com.karyar.mohsen.karyar.worker.persistence.dao
+package com.karyar.mohsen.karyar.workExperience
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import com.karyar.mohsen.karyar.worker.persistence.db.WorkExperience
 
 /**
  * Created by Mohsen on 5/23/18.

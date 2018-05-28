@@ -9,18 +9,18 @@ import com.karyar.mohsen.karyar.employer.CompanyDao
 import com.karyar.mohsen.karyar.employer.Employer
 import com.karyar.mohsen.karyar.job.Job
 import com.karyar.mohsen.karyar.job.JobDao
+import com.karyar.mohsen.karyar.language.Language
+import com.karyar.mohsen.karyar.language.LanguageDao
+import com.karyar.mohsen.karyar.language.WorkerLanguageJoin
 import com.karyar.mohsen.karyar.login.LoginDao
 import com.karyar.mohsen.karyar.login.LoginInfo
 import com.karyar.mohsen.karyar.skill.Skill
 import com.karyar.mohsen.karyar.skill.SkillDao
-import com.karyar.mohsen.karyar.worker.persistence.dao.LanguageDao
-import com.karyar.mohsen.karyar.worker.persistence.dao.WorkExperienceDao
+import com.karyar.mohsen.karyar.skill.WorkerSkillJoin
+import com.karyar.mohsen.karyar.workExperience.WorkExperience
+import com.karyar.mohsen.karyar.workExperience.WorkExperienceDao
 import com.karyar.mohsen.karyar.worker.persistence.dao.WorkerDao
-import com.karyar.mohsen.karyar.worker.persistence.db.Language
-import com.karyar.mohsen.karyar.worker.persistence.db.WorkExperience
 import com.karyar.mohsen.karyar.worker.persistence.db.Worker
-import com.karyar.mohsen.karyar.worker.persistence.db.WorkerLanguageJoin
-import com.karyar.mohsen.karyar.worker.persistence.db.WorkerSkillJoin
 
 /**
  * Created by Mohsen on 5/22/18.

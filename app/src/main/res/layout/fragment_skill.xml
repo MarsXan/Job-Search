@@ -122,6 +122,7 @@
             />
 
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
@@ -129,20 +130,18 @@
             android:background="@drawable/state"
             android:gravity="right"
             android:orientation="horizontal"
-            android:paddingRight="16dp"
+
 
             >
 
-          <TextView
-              android:id="@+id/addWorkExpLabel"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_alignParentRight="true"
-              android:layout_centerVertical="true"
-              android:text=" سابقه شغلی"
-              android:textColor="@color/color_text"
-              android:textSize="17sp"
-              android:textStyle="bold"
+          <android.support.design.widget.TextInputEditText
+              android:id="@+id/workExpInputEt"
+              android:layout_marginLeft="55dp"
+              android:background="@android:color/transparent"
+              android:gravity="right"
+              android:hint="سوابق شغلی"
+              android:inputType="text"
+              style="@style/Widget.TextEdit"
               />
           <FrameLayout
               android:id="@+id/addWorkExpBtn"
@@ -184,21 +183,20 @@
             android:background="@drawable/state"
             android:gravity="right"
             android:orientation="horizontal"
-            android:paddingRight="16dp"
-
             >
 
-          <TextView
-              android:id="@+id/addLanguage"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
+          <android.support.design.widget.TextInputEditText
+              android:id="@+id/languageInputEt"
+              android:layout_marginLeft="55dp"
+              android:background="@android:color/transparent"
+              android:gravity="right"
+              android:hint="زبان"
               android:layout_alignParentRight="true"
               android:layout_centerVertical="true"
-              android:text="زبان"
-              android:textColor="@color/color_text"
-              android:textSize="17sp"
-              android:textStyle="bold"
+              android:inputType="text"
+              style="@style/Widget.TextEdit"
               />
+
           <FrameLayout
               android:id="@+id/addLanguageBtn"
               android:layout_width="55dp"

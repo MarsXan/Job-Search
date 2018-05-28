@@ -8,15 +8,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.karyar.mohsen.karyar.R.layout
-import com.karyar.mohsen.karyar.skill.SkillRecyclerApdater.SkillVH
+import com.karyar.mohsen.karyar.language.Language
+import com.karyar.mohsen.karyar.skill.SimpleItemRecyclerAdapter.SkillVH
+import com.karyar.mohsen.karyar.workExperience.WorkExperience
 import kotlinx.android.synthetic.main.item_skill.view.deleteItem
 import kotlinx.android.synthetic.main.item_skill.view.itemName
 
 /**
  * Created by Mohsen on 5/27/18.
  */
-class SkillRecyclerApdater(var mContext: Context,
-  var skills: List<Skill>) : RecyclerView.Adapter<SkillVH>() {
+class SimpleItemRecyclerAdapter(var mContext: Context,
+  var items: MutableList<*>) : RecyclerView.Adapter<SkillVH>() {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkillVH {
     val view = LayoutInflater.from(parent.context)
         .inflate(layout.item_skill, parent, false)
@@ -24,12 +26,28 @@ class SkillRecyclerApdater(var mContext: Context,
   }
 
   override fun getItemCount(): Int {
-    return skills.size
+    return items.size
   }
 
   override fun onBindViewHolder(holder: SkillVH, position: Int) {
-    val skill = skills[position]
-    holder.mName.text = skill.skillName
+    val item = items[position]
+    when (item) {
+      is Skill -> {
+        holder.mName.text = item.skillName
+      }
+      is Language -> {
+        holder.mName.text = item.name
+      }
+      is WorkExperience -> {
+        holder.mName.text = item.company
+      }
+    }
+
+
+    holder.mDelete.setOnClickListener({
+      items.remove(item)
+      notifyDataSetChanged()
+    })
   }
 
   inner class SkillVH(itemView: View) : RecyclerView.ViewHolder(itemView) {

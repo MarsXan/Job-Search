@@ -2,6 +2,7 @@ package com.karyar.mohsen.karyar.login
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Point
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.ImageViewTarget
+import com.karyar.mohsen.karyar.AppDatabase
 import com.karyar.mohsen.karyar.R
 import com.karyar.mohsen.karyar.Role
 import com.karyar.mohsen.karyar.Role.WORKER
@@ -29,13 +31,15 @@ import kotlinx.android.synthetic.main.activity_login.pager
 import kotlinx.android.synthetic.main.activity_login.scrolling_background
 
 class LoginActivity : AppCompatActivity() {
-
+  private var loginViewModel: LoginViewModel? = null
   private var sharedElements: MutableList<ImageView> = mutableListOf()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
-
+    loginViewModel = ViewModelProviders.of(this)
+        .get(LoginViewModel::class.java)
+    loginViewModel!!.setDatabase(AppDatabase.getInstance(this)!!)
 
     sharedElements.add(logo)
     sharedElements.add(first)
@@ -92,6 +96,11 @@ class LoginActivity : AppCompatActivity() {
         })
   }
 
+  override fun onDestroy() {
+    super.onDestroy()
+    AppDatabase.destroyInstance()
+
+  }
   private fun screenSize(): IntArray {
     val display = windowManager.defaultDisplay
     val size = Point()

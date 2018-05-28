@@ -1,4 +1,4 @@
-package com.karyar.mohsen.karyar.worker.persistence.db
+package com.karyar.mohsen.karyar.workExperience
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -8,6 +8,7 @@ import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
+import com.karyar.mohsen.karyar.worker.persistence.db.Worker
 
 /**
  * Created by Mohsen on 5/23/18.
@@ -51,6 +52,7 @@ class WorkExperience(
       object : Parcelable.Creator<WorkExperience> {
         override fun createFromParcel(source: Parcel): WorkExperience =
           WorkExperience(source)
+
         override fun newArray(size: Int): Array<WorkExperience?> = arrayOfNulls(size)
       }
   }

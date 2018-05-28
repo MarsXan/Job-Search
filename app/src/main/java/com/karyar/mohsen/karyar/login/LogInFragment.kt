@@ -17,7 +17,6 @@ import android.view.View
 import android.widget.Toast
 import com.blankj.utilcode.util.ObjectUtils.isNotEmpty
 import com.blankj.utilcode.util.StringUtils.isEmpty
-import com.karyar.mohsen.karyar.AppDatabase
 import com.karyar.mohsen.karyar.R
 import com.karyar.mohsen.karyar.login.LoginActivity.Companion.isLoggedIn
 import com.karyar.mohsen.karyar.profile.ProfileActivity
@@ -44,7 +43,6 @@ class LogInFragment : AuthFragment() {
     views.add(passwordInputEt)
     loginViewModel = ViewModelProviders.of(activity!!)
         .get(LoginViewModel::class.java)
-    loginViewModel!!.setDatabase(AppDatabase.getInstance(activity!!)!!)
     arguments?.let {
       loginViewModel!!.role = it.getString(ROLE_TYPE)
     }
